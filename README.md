@@ -1,6 +1,6 @@
 # ToDoList project 
 
-Project created for users who wants 
+Project created for users who wants to stay organized and manage their tasks effectively.
 
 # Getting Started with Create React App
 
