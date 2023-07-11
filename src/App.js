@@ -1,10 +1,36 @@
 import './index.scss'
-import React from 'react';
+import React ,{useState, useEffect}from 'react';
 import List from './components/List/List'
 import AddButtonList from './components/AddList/AddButtonList';
 import DB from "../src/assets/db.json";
 
 function App() {
+  
+  const [lists, updateLists] = useState(
+    DB.lists.map(item => {
+      item.color = DB.colors.filter(color => color.id === item.colorId)[0].name
+      return item;
+    })
+    );
+
+    
+    const newList = (obj) => {
+      const newArray = [ ...lists ,obj];
+          updateLists(newArray);
+    }
+
+    useEffect(() => {
+          const raw = localStorage.getItem("lists");
+          updateLists(JSON.parse(raw));
+          console.log('hello')
+    },[])
+        
+    useEffect(() =>{
+      localStorage.setItem('lists' , JSON.stringify(lists));
+    },[lists] )
+
+
+
   return (
     <div className="todo">
       <div className="todo__sidebar">
@@ -20,23 +46,8 @@ function App() {
             
           ]}
           />
-
-          <List items={[
-            {
-              color:'green',
-              name:'Buy',
-            },
-            {
-              color:'blue',
-              name:'Frontend',
-              active: true,
-            },
-            {
-              color:'pink',
-              name:'Films and Serials',
-            }
-          ]}/>
-          <AddButtonList colors={DB.colors}/> 
+          <List items={lists} isRemovable/>
+          <AddButtonList newCreatedList={newList} colors={DB.colors}/> 
         </div>
       </div>
       <div className="todo__tasks">

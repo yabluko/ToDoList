@@ -4,9 +4,26 @@ import Badge from '../Badge/Badge'
 import React, { useState } from 'react';
 import close from '../../assets/img/close.svg'
 
-function AddButtonList({ colors }) {
+function AddButtonList({ colors , newCreatedList }) {
   const [visiblePopup, showPopup] = useState(false);
   const [selectedColor, selectColor] = useState(colors[0].id);
+  const [inputValue, setInputValue] = useState('');
+
+  const generateFunction = () => {
+    const color = colors.filter((color) => color.id === selectedColor)[0].name;
+    if (!inputValue) {
+      alert('Write something');
+      return;
+    }
+    else {
+      newCreatedList({ "id": Math.random(), "name": inputValue, "color": color });
+      showPopup(false);
+      setInputValue('');
+      selectColor(colors[0].id);
+    }
+
+  }
+
   return (
     <div className='add-list'>
       <List onClick={() => showPopup(true)}
@@ -25,7 +42,9 @@ function AddButtonList({ colors }) {
       { visiblePopup && (
         <div className='add-list__popup'>
           <img onClick={() => showPopup(false)}  src={close} alt="close button" className='add-list__popup-close-btn'/>
-          <input className='field' type='text' placeholder='Name of list' />
+          <input value={inputValue} onChange={event =>{
+            setInputValue(event.target.value);
+          }} className='field' type='text' placeholder='Name of list' />
           <div className='palitra'>
             {
               colors.map(color => (
@@ -33,7 +52,7 @@ function AddButtonList({ colors }) {
               ))
             }
           </div>
-          <button className='button' >Add</button>
+          <button onClick={generateFunction} className='button'>Add</button>
         </div>)
       }
 
