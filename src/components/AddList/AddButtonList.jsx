@@ -1,25 +1,39 @@
 import List from '../List/List'
-import './AddButtonList.scss'
 import Badge from '../Badge/Badge'
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
+
+import './AddButtonList.scss'
+
 import close from '../../assets/img/close.svg'
 
 function AddButtonList({ colors , newCreatedList }) {
   const [visiblePopup, showPopup] = useState(false);
-  const [selectedColor, selectColor] = useState(colors[0].id);
+  const [selectedColor, selectColor] = useState(3);
   const [inputValue, setInputValue] = useState('');
 
+  useEffect(() => {
+    if (Array.isArray(colors)) {
+      selectColor(colors[0].id);
+    }
+  }, [colors]);
+
   const generateFunction = () => {
-    const color = colors.filter((color) => color.id === selectedColor)[0].name;
     if (!inputValue) {
       alert('Write something');
       return;
     }
     else {
-      newCreatedList({ "id": Math.random(), "name": inputValue, "color": color });
-      showPopup(false);
-      setInputValue('');
-      selectColor(colors[0].id);
+      const colorSelected = colors.filter((color) => color.id === selectedColor)[0].name;
+      fetch('http://localhost:3001/lists', {method: 'POST',headers: {'Content-Type': 'application/json' } , body: JSON.stringify({
+        name: inputValue,
+        colorId: selectedColor,
+      })}).then(response => response.json()).then(res =>  {
+        const listObj = { ...res , color : { name: colorSelected } }
+        newCreatedList(listObj)
+        showPopup();
+      })
+      
     }
 
   }

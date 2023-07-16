@@ -31,10 +31,14 @@ body {
     background-color: #F4F6F8;
     height: calc(100% - 120px);
     width: 200px;
-    border-right: 1px solid;
     padding: 60px 20px;
-    // border-radius: ;
   }
 
- 
+  &__tasks{
+    flex: 1;
+    padding: 60px;
+
+
+  }
+
 }

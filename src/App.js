@@ -1,36 +1,33 @@
 import './index.scss'
 import React ,{useState, useEffect}from 'react';
-import List from './components/List/List'
-import AddButtonList from './components/AddList/AddButtonList';
-import DB from "../src/assets/db.json";
+
+import {List , AddButtonList , Tasks} from './components/point'
+
+
 
 function App() {
   
-  const [lists, updateLists] = useState(
-    DB.lists.map(item => {
-      item.color = DB.colors.filter(color => color.id === item.colorId)[0].name
-      return item;
-    })
-    );
+  const [lists, updateLists] = useState(null);
+  const [colors , updateColors] = useState(null);
 
     
-    const newList = (obj) => {
+    const newList = obj => {
       const newArray = [ ...lists ,obj];
           updateLists(newArray);
     }
 
-    useEffect(() => {
-          const raw = localStorage.getItem("lists");
-          updateLists(JSON.parse(raw));
-          console.log('hello')
-    },[])
-        
-    useEffect(() =>{
-      localStorage.setItem('lists' , JSON.stringify(lists));
-    },[lists] )
+    
+  useEffect(() => {
+    fetch('http://localhost:3001/lists?_expand=color&_embed=tasks').then(res => res.json()).then(response => {
+     
+      updateLists(response);
+    });
 
+    fetch('http://localhost:3001/colors').then(res => res.json()).then(response => {
+      updateColors(response);
+    });
 
-
+  }, []);
   return (
     <div className="todo">
       <div className="todo__sidebar">
@@ -46,12 +43,17 @@ function App() {
             
           ]}
           />
-          <List items={lists} isRemovable/>
-          <AddButtonList newCreatedList={newList} colors={DB.colors}/> 
+          {lists ? (<List items={lists} isRemovable onRemove={id => {
+            const newList = lists.filter(item => item.id !== id)
+            updateLists(newList)
+            } 
+          }/>) : 
+            ('Loading...')}
+          <AddButtonList newCreatedList={newList} colors={colors}/> 
         </div>
       </div>
       <div className="todo__tasks">
-        
+       {lists && <Tasks list={lists[1]}/>}
       </div>
     </div>
   );

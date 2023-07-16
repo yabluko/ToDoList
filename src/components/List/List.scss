@@ -25,13 +25,15 @@
         padding: 10px 12px;
         border-radius: 5px;
         cursor: pointer;
+       
+        
         .list__remove-icon:hover{
             opacity: 1;
         }
 
-        &:hover #{$self}__remove-icon{
-            opacity: 1;
-        }
+        // &:hover #{$self}__remove-icon{
+        //     opacity: 1;
+        // }
 
         &:hover {
             background-color: #FFFFFF;
