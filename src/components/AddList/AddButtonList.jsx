@@ -8,6 +8,7 @@ import './AddButtonList.scss'
 import close from '../../assets/img/close.svg'
 
 function AddButtonList({ colors , newCreatedList }) {
+  
   const [visiblePopup, showPopup] = useState(false);
   const [selectedColor, selectColor] = useState(3);
   const [inputValue, setInputValue] = useState('');
