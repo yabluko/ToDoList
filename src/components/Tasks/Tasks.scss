@@ -1,4 +1,8 @@
 .tasks {
+
+  &:not(:last-of-type){
+    margin-bottom: 40px;
+  }
   &__title {
     font-style: normal;
     font-weight: 700;
@@ -15,10 +19,6 @@
       &:hover {
         opacity: 1;
       }
-
-      // path{
-      //   stroke: black;
-      // }
     }
 
 
@@ -49,11 +49,12 @@
       display: flex;
       align-items: baseline;
       margin-top: 15px;
+
     }
 
-    input {
+    p {
+      font-weight: normal;
       margin-left: 15px;
-      border: 0;
       font-size: 16px;
       width: 100%;
     }
@@ -103,6 +104,9 @@
             background: darken(#F4F6F8, 3%);
           }
         }
+        &:disabled{
+          background: #9C9C9C;
+        }
 
       }
     }
@@ -121,8 +125,6 @@
   }
 
   .checkbox {
-    margin-top: 20px;
-
     input {
       display: none;
     }
@@ -162,7 +164,7 @@
 
     }
 
-    input:checked+label {
+    input:checked + label {
       background-color: #4DD599;
       border-color: #4DD599;
 

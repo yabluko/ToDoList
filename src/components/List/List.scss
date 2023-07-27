@@ -1,5 +1,4 @@
 .list {
-    $self: &;
     margin-bottom: 10px;
 
     &__add-button {
@@ -14,9 +13,6 @@
         }
     }
 
-    &__remove-icon{
-        opacity: 0;
-    }
     
     li {
         display: flex;
@@ -25,14 +21,18 @@
         padding: 10px 12px;
         border-radius: 5px;
         cursor: pointer;
+        transition: background-color 0.4s;
        
-        
-        .list__remove-icon:hover{
-            opacity: 1;
+        .list__remove-icon{
+            opacity: 0;
         }
+
 
         &:hover {
             background-color: #FFFFFF;
+            .list__remove-icon{
+                opacity: 0.8;
+            }
         }
 
 

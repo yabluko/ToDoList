@@ -33,6 +33,7 @@ function AddButtonList({ colors , newCreatedList }) {
         const listObj = { ...res , color : { name: colorSelected } }
         newCreatedList(listObj)
         showPopup();
+        setInputValue('')
       })
       
     }

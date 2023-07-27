@@ -1,112 +1,93 @@
 {
   "lists": [
     {
-      "id": 1,
-      "name": "Buy",
-      "colorId": 5
+      "name": "Sport",
+      "colorId": 1,
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Frontend",
-      "colorId": 4
-    },
-    {
-      "id": 3,
-      "name": "Films and Serials",
-      "colorId": 3
-    },
-    {
-      "id": 4,
-      "name": "Books",
-      "colorId": 2
-    },
-    {
-      "id": 5,
       "name": "Private",
-      "colorId": 1
+      "colorId": 6,
+      "id": 2
     },
     {
-      "name": "Yabko",
+      "name": "Education",
+      "colorId": 2,
+      "id": 3
+    },
+    {
+      "name": "Fun",
+      "colorId": 4,
+      "id": 4
+    },
+    {
+      "name": "Cooking",
       "colorId": 5,
+      "id": 5
+    },
+    {
+      "name": "House",
+      "colorId": 7,
       "id": 6
     },
     {
-      "name": "Lox",
-      "colorId": 4,
+      "name": "Cleaning",
+      "colorId": 3,
       "id": 7
+    },
+    {
+      "name": "Farmacy",
+      "colorId": 4,
+      "id": 8
     }
   ],
   "tasks": [
     {
-      "id": 1,
-      "listId": 2,
-      "text": "Learn JavaScript",
-      "completed": false
+      "listId": 1,
+      "text": "regby",
+      "completed": false,
+      "id": 4
     },
     {
-      "id": 2,
       "listId": 2,
-      "text": "Learn pattern programming",
-      "completed": false
-    },
-    {
-      "id": 3,
-      "listId": 2,
-      "text": "ReactJS Hooks (useState, useReducer, useEffect)",
-      "completed": true
-    },
-    {
-      "id": 4,
-      "listId": 2,
-      "text": "Redux (redux-observable, redux-saga)",
-      "completed": false
-    },
-    {
-      "listId": 6,
-      "text": "asdfasdfasdf",
+      "text": "Hello",
       "completed": false,
       "id": 5
     },
     {
-      "listId": 5,
-      "text": "asdfasdf",
+      "listId": 2,
+      "text": "Bye",
       "completed": false,
       "id": 6
     },
     {
-      "listId": 5,
-      "text": "Hello",
+      "listId": 2,
+      "text": "Good evening",
       "completed": false,
       "id": 7
     },
     {
-      "listId": 5,
-      "text": "Hello",
-      "completed": false,
-      "id": 8
-    },
-    {
-      "listId": 4,
-      "text": "Bye",
+      "listId": 3,
+      "text": "do math homework",
       "completed": false,
       "id": 9
     },
     {
-      "listId": 1,
-      "text": "Bye",
+      "listId": 3,
+      "text": "find some interesting facts about war",
       "completed": false,
       "id": 10
     },
     {
-      "listId": 1,
-      "text": "Hello",
+      "listId": 6,
+      "text": "clean kitchen",
       "completed": false,
       "id": 11
     },
     {
-      "listId": 1,
-      "text": "kkk",
-      "completed": false,
+      "listId": 7,
+      "text": "Wash face",
+      "completed": true,
       "id": 12
     }
   ],
