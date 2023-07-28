@@ -18,3 +18,7 @@ React.js , React Router, Json-server(API), Scss
 3. Intsall json-server in folder of project
    ```bash
    npm install -g json-server 
+4. Run project
+   ```bash
+   npm start
+   
