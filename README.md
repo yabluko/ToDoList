@@ -4,5 +4,5 @@ Project created for users who wants to stay organized and manage their tasks eff
 
 # :hammer_and_wrench: Stack 
 
-React.js , React Router, Json-server(Open Api)
+React.js , React Router, Json-server(API)
 
