@@ -11,13 +11,10 @@ React.js , React Router, Json-server(API), Scss
 
 1. Clone my repository
    ```bash 
-   # git clone https://github.com/username/project.git
+    git clone https://github.com/username/project.git
 
 2. Install Node.js on your computer
    
 3. Intsall json-server in folder of project
-   ```bash npm install -g json-server 
-
-   
-
-
+   ```bash
+   npm install -g json-server 
