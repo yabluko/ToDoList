@@ -45,19 +45,19 @@
     {
       "listId": 1,
       "text": "regby",
-      "completed": false,
+      "completed": true,
       "id": 4
     },
     {
       "listId": 2,
       "text": "Hello",
-      "completed": false,
+      "completed": true,
       "id": 5
     },
     {
       "listId": 2,
       "text": "Bye",
-      "completed": false,
+      "completed": true,
       "id": 6
     },
     {
@@ -87,7 +87,7 @@
     {
       "listId": 7,
       "text": "Wash face",
-      "completed": true,
+      "completed": false,
       "id": 12
     }
   ],

@@ -3,7 +3,7 @@ import './Tasks.scss'
 import AddNewTask from '../AddNewTask/AddNewTask'
 import Task from '../Task/Task'
 
-function Tasks({ list , onItem , newTask, withoutEmpty, removeTask, onEditTask}) {
+function Tasks({ list , onItem , newTask, withoutEmpty, removeTask, onEditTask , onCompleteTask}) {
 
     const editTitle = () => {
         const newTitle = window.prompt('New title', list.name)
@@ -27,7 +27,7 @@ function Tasks({ list , onItem , newTask, withoutEmpty, removeTask, onEditTask})
             <div className='tasks__items'>
                 {!withoutEmpty && list.tasks && !list.tasks.length && <h3>No tasks</h3>}
                 {list.tasks && list.tasks.map(task => (
-                    <Task key={task.id} {...task} onRemove={removeTask} list={list} onEdit={onEditTask}/>
+                    <Task key={task.id} {...task} onRemove={removeTask} list={list} onEdit={onEditTask} onComplete={onCompleteTask}/>
                 ))}
             </div>
             <AddNewTask list={list} newTask={newTask}/>

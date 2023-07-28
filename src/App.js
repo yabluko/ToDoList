@@ -98,6 +98,26 @@ function App() {
 
   }
 
+  const onCompleteTask = (listId, taskId, checked) => {
+    const newList = lists.map(list => {
+      if (list.id === listId) {
+          list.tasks = list.tasks.map(task => {
+            if(task.id === taskId){
+              task.completed = checked;
+            }
+            return task
+          })
+      }
+    return list
+    })
+    updateLists(newList)
+
+    fetch('http://localhost:3001/tasks/'+ taskId,{ method: 'PATCH', headers:{'Content-Type': 'application/json' }, body: JSON.stringify({
+      completed : checked
+    })})
+   
+  }
+
   useEffect (() => {
     const listId = window.location.pathname.split('lists/')[1];
     if (lists){
@@ -134,10 +154,10 @@ function App() {
       </div>
       <div className="todo__tasks">
         <Routes>
-          <Route path='/' element={lists && lists.map(list => <Tasks list={list} onItem={editListTitle} newTask={newTask} withoutEmpty key={list.id} onEditTask={onEditTask} /> )} />
+          <Route path='/' element={lists && lists.map(list => <Tasks list={list} onItem={editListTitle} newTask={newTask} withoutEmpty key={list.id} onEditTask={onEditTask} onCompleteTask={onCompleteTask}/> )} />
         </Routes>
 
-        {activeItem && lists && (<Tasks list={activeItem} onItem={editListTitle} newTask={newTask} removeTask={onRemoveTask} onEditTask={onEditTask}/> )}
+        {activeItem && lists && (<Tasks list={activeItem} onItem={editListTitle} newTask={newTask} removeTask={onRemoveTask} onEditTask={onEditTask} onCompleteTask={onCompleteTask}/>  )}
       </div>
     </div>
   );
