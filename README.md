@@ -11,7 +11,7 @@ React.js , React Router, Json-server(API), Scss
 
 1. Clone my repository
    ```bash 
-   git clone https://github.com/username/project.git
+   # git clone https://github.com/username/project.git
 
 2. Install Node.js on your computer
    
