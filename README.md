@@ -2,5 +2,5 @@
 
 Project created for users who wants to stay organized and manage their tasks effectively.
 
-# Stack 
+# Stack :hammer_and_wrench:
 
