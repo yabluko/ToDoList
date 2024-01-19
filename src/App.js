@@ -11,9 +11,9 @@ function App() {
 
   const navigate = useNavigate();
 
-  const [lists, updateLists] = useState(null);
-  const [colors, updateColors] = useState(null);
-  const [activeItem, activateItem] = useState(null);
+  const [lists, updateLists] = useState(null)
+  const [colors, updateColors] = useState(null)
+  const [activeItem, activateItem] = useState(null)
 
   const newList = obj => {
     const newArray = [...lists, obj];
@@ -57,74 +57,78 @@ function App() {
     updateLists(array);
   }
 
-  const onRemoveTask = (onTaskId , listId) => {
+  const onRemoveTask = (onTaskId, listId) => {
     const newList = lists.map(element => {
-      if(element.id === listId){ 
+      if (element.id === listId) {
         element.tasks = element.tasks.filter(item => item.id !== onTaskId)
       }
       return element
     })
     updateLists(newList)
-    fetch('http://localhost:3001/tasks/' + onTaskId , {method: 'DELETE'})
-    
+    fetch('http://localhost:3001/tasks/' + onTaskId, { method: 'DELETE' })
+
   }
 
   const onEditTask = (listId, taskObj) => {
 
     const newText = window.prompt("Write new task", taskObj.text)
 
-    if (!newText){
+    if (!newText) {
       return
     }
 
     const newList = lists.map(list => {
       if (list.id === listId) {
-          list.tasks = list.tasks.map(task => {
-            if(task.id === taskObj.id){
-              task.text = newText;
-            }
-            return task
-          })
+        list.tasks = list.tasks.map(task => {
+          if (task.id === taskObj.id) {
+            task.text = newText;
+          }
+          return task
+        })
       }
-    return list
+      return list
     })
 
     console.log(newList)
     updateLists(newList);
 
-    fetch('http://localhost:3001/tasks/'+ taskObj.id,{ method: 'PATCH', headers:{'Content-Type': 'application/json' }, body: JSON.stringify({
-      text: newText
-    })})
+    fetch('http://localhost:3001/tasks/' + taskObj.id, {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+        text: newText
+      })
+    })
 
   }
 
   const onCompleteTask = (listId, taskId, checked) => {
     const newList = lists.map(list => {
       if (list.id === listId) {
-          list.tasks = list.tasks.map(task => {
-            if(task.id === taskId){
-              task.completed = checked;
-            }
-            return task
-          })
+        list.tasks = list.tasks.map(task => {
+          if (task.id === taskId) {
+            task.completed = checked;
+          }
+          return task
+        })
       }
-    return list
+      return list
     })
     updateLists(newList)
 
-    fetch('http://localhost:3001/tasks/'+ taskId,{ method: 'PATCH', headers:{'Content-Type': 'application/json' }, body: JSON.stringify({
-      completed : checked
-    })})
-   
+    fetch('http://localhost:3001/tasks/' + taskId, {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+        completed: checked
+      })
+    })
+
   }
 
-  useEffect (() => {
+  useEffect(() => {
     const listId = window.location.pathname.split('lists/')[1];
-    if (lists){
-      const list = lists.find(item => item.id === Number(listId) )
+    if (lists) {
+      const list = lists.find(item => item.id === Number(listId))
       activateItem(list)
     }
-  }, [lists , window.location.pathname]);
+  }, [lists, window.location.pathname]);
 
   return (
 
@@ -148,16 +152,16 @@ function App() {
               const newList = lists.filter(item => item.id !== id)
               updateLists(newList)
             }} />) :
-            ('Loading...')}
+            ('Loading..')}
           <AddButtonList newCreatedList={newList} colors={colors} />
         </div>
       </div>
       <div className="todo__tasks">
         <Routes>
-          <Route path='/' element={lists && lists.map(list => <Tasks list={list} onItem={editListTitle} newTask={newTask} withoutEmpty key={list.id} onEditTask={onEditTask} onCompleteTask={onCompleteTask}/> )} />
+          <Route path='/' element={lists && lists.map(list => <Tasks list={list} onItem={editListTitle} newTask={newTask} withoutEmpty key={list.id} onEditTask={onEditTask} onCompleteTask={onCompleteTask} />)} />
         </Routes>
 
-        {activeItem && lists && (<Tasks list={activeItem} onItem={editListTitle} newTask={newTask} removeTask={onRemoveTask} onEditTask={onEditTask} onCompleteTask={onCompleteTask}/>  )}
+        {activeItem && lists && (<Tasks list={activeItem} onItem={editListTitle} newTask={newTask} removeTask={onRemoveTask} onEditTask={onEditTask} onCompleteTask={onCompleteTask} />)}
       </div>
     </div>
   );
