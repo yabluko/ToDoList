@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import remove from '../../assets/img/remove.svg'
 
 function List({ items, onClick, isRemovable, onRemove, onClickItem, activeItem }) {
-    //Wrong comment
+// Resolve conflict
     const removeElement = (item) => {
         fetch('http://localhost:3001/lists/' + item.id, {
             method: 'DELETE'

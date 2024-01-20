@@ -8,7 +8,7 @@ import { List, AddButtonList, Tasks } from './components/point'
 
 
 function App() {
-
+  //Hi doing merge
   const navigate = useNavigate();
 
   const [lists, updateLists] = useState(null)
